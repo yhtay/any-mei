@@ -1,3 +1,5 @@
+const auth = require("../../models/authModel");
+
 exports.requestReset = async () => {
   console.log("Working");
   return res.json("Request");

@@ -1,5 +1,5 @@
 // Import the required modules and dependencies
-const resetService = require("../services/resetService");
+const resetService = require("../../services/auth/resetService");
 
 // Controller methods for handling user-related operations
 exports.request = async (req, res) => {

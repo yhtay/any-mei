@@ -1,13 +1,14 @@
-// const connectDB = require("./config/mongodb");
+const connectDB = require("./config/mongodb");
 const bodyParser = require("body-parser");
 const cors = require("cors");
 const express = require("express");
 const app = express();
+// const isAuth = require('./middlewares/authMiddleware')
 
 // ----------------
 // Database
 // ----------------
-// connectDB();
+connectDB();
 
 // ----------------
 // Middlewares
@@ -19,10 +20,12 @@ app.use(cors());
 // ----------------
 // Routes
 // ----------------
-const usersRoutes = require("./routes/usersRoutes");
-const resetRoutes = require("./routes/resetRoutes");
+const authRoutes = require("./routes/auth/authRoutes");
+const resetRoutes = require("./routes/auth/resetRoutes");
+const loginRoutes = require("./routes/auth/loginRoutes");
 
-app.use("/api/user", usersRoutes);
+app.use("/api/auth", authRoutes);
 app.use("/api/reset", resetRoutes);
+app.use("/api/login", loginRoutes);
 
 module.exports = app;

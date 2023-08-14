@@ -1,6 +1,33 @@
 import { bootstrapApplication } from '@angular/platform-browser';
-import { appConfig } from './app/app.config';
 import { AppComponent } from './app/app.component';
+import { ExternalComponent } from './external/external.component';
+import {
+  HTTP_INTERCEPTORS,
+  provideHttpClient,
+  withInterceptorsFromDi,
+} from '@angular/common/http';
+import {
+  RouterModule,
+  provideRouter,
+  withComponentInputBinding,
+} from '@angular/router';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { importProvidersFrom } from '@angular/core';
 
-bootstrapApplication(AppComponent, appConfig)
-  .catch((err) => console.error(err));
+bootstrapApplication(AppComponent, {
+  providers: [
+    importProvidersFrom(
+      //   RouterModule.forRoot(APP_ROUTES),
+      BrowserAnimationsModule
+    ),
+    // provideRouter(APP_ROUTES, withComponentInputBinding()),
+    // {
+    //   provide: AuthService,
+    //   useClass: AuthService,
+    // },
+    // { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true },
+    provideHttpClient(withInterceptorsFromDi()),
+  ],
+});
+
+bootstrapApplication(ExternalComponent);

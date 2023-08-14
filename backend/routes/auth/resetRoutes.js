@@ -1,6 +1,6 @@
 const express = require("express");
 const router = express.Router();
-const resetController = require("../controllers/resetController");
+const resetController = require("../../controllers/auth/resetController");
 
 // Request a email for reset
 router.post("/request", resetController.request);
