@@ -1,0 +1,18 @@
+<button (click)="login()">Change</button>
+<nav>
+  <span>Logo</span>
+  <ng-container *ngIf="!isLoggedIn">
+    <li>
+      <a [routerLink]="'/auth/login'">Login</a>
+    </li>
+    <li>
+      <a [routerLink]="'/auth/register'">Register</a>
+    </li>
+  </ng-container>
+  <ng-template [ngIf]="isLoggedIn">
+    <li>
+      <a [routerLink]="'/auth/dashboard'">Dashboard</a>
+    </li>
+    <li><button (click)="logout()">Logout</button></li>
+  </ng-template>
+</nav>
