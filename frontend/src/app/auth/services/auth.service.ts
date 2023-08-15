@@ -1,6 +1,6 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import jwt_decode from "jwt-decode"
+import jwt_decode from 'jwt-decode';
 
 export const url: string = 'http://localhost:3000/api/login';
 export const httpOptions = {
@@ -11,10 +11,17 @@ export const httpOptions = {
   providedIn: 'root',
 })
 export class AuthService {
+  isLoggedIn: boolean = false;
+
   constructor(private _http: HttpClient) {}
 
-  public login(username: string, password: string) {
-    const body = { username, password };
-    return this._http.post(url, body);
+  public login(data: any) {
+    this.isLoggedIn = true;
+    console.log(data);
+  }
+
+  public logout() {
+    this.isLoggedIn = false;
+    console.log('Logout');
   }
 }
