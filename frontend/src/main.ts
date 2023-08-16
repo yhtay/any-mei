@@ -13,14 +13,15 @@ import {
 } from '@angular/router';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { importProvidersFrom } from '@angular/core';
+import { APP_ROUTES } from './app/app.routes';
 
 bootstrapApplication(AppComponent, {
   providers: [
     importProvidersFrom(
-      //   RouterModule.forRoot(APP_ROUTES),
+      RouterModule.forRoot(APP_ROUTES),
       BrowserAnimationsModule
     ),
-    // provideRouter(APP_ROUTES, withComponentInputBinding()),
+    provideRouter(APP_ROUTES, withComponentInputBinding()),
     // {
     //   provide: AuthService,
     //   useClass: AuthService,
