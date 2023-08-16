@@ -24,4 +24,9 @@ export class AuthService {
     this.isLoggedIn = false;
     console.log('Logout');
   }
+
+  public register(data: any) {
+    this.isLoggedIn = true;
+    console.log("registration data: ", data)
+  }
 }
