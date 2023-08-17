@@ -1,0 +1,66 @@
+.nav {
+  background: black;
+  padding: 1.5rem 4rem;
+  display: flex;
+  flex-wrap: wrap;
+
+  &-flex-item {
+    flex: 1 0 33%;
+  }
+
+  &-logo {
+    cursor: pointer;
+  }
+
+  &-list {
+    display: flex;
+  }
+
+  &-item {
+    list-style: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding-inline: 0.5rem;
+
+    &:first-child {
+      margin-left: auto;
+    }
+    &:not(:first-child) {
+      margin-left: 1rem;
+    }
+  }
+
+  &-item-right {
+    margin: auto;
+  }
+
+  &-link {
+    text-decoration: none;
+    text-transform: uppercase;
+    color: white;
+    font-weight: bold;
+    cursor: pointer;
+  }
+
+  &-register {
+    border: 1px solid white;
+  }
+
+  &-btn-container {
+    display: flex;
+  }
+
+  &-btn {
+    min-width: 5rem;
+    height: 100%;
+    padding-inline: 1rem;
+    cursor: pointer;
+    &:first-child {
+      margin-left: auto;
+    }
+    &:not(:first-child) {
+      margin-left: 1rem;
+    }
+  }
+}
