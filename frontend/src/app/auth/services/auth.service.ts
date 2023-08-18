@@ -28,8 +28,8 @@ export class AuthService {
 
   public register(registrationData: any) {
     this.isLoggedIn = true;
-    console.log("registration data: ", registrationData)
-    console.log("url:", `${this.url}/auth`)
-    this._http.post(`${this.url}/auth`, registrationData)
+    console.log('registration data: ', registrationData);
+    console.log('url:', `${this.url}/auth`);
+    return this._http.post(`${this.url}/auth`, registrationData);
   }
 }
