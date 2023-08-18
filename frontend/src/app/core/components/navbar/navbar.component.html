@@ -5,6 +5,7 @@
       alt="logo"
       [routerLink]="'/auth/login'"
     />
+    <span>Theme Changer</span>
   </div>
   <ng-container *ngIf="!isLoggedIn">
     <ul class="nav-list nav-flex-item">
@@ -36,4 +37,5 @@
       <button class="nav-btn" (click)="logout()">Logout</button>
     </div>
   </ng-template>
+  <div>Burger</div>
 </nav>

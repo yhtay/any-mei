@@ -1,3 +1,6 @@
 export type MCAuth = {
-    accessToken: string,
-}
+  accessToken: string;
+  expiresIn: string;
+};
+
+export class MAuth {}

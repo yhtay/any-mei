@@ -26,6 +26,6 @@ export class RegisterComponent {
   }
 
   onRegistration() {
-    this.authService.register(this.registrationForm.value)
+    this.authService.register(this.registrationForm.value).subscribe(console.log)
   }
 }

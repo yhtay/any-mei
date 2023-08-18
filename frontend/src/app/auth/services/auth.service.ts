@@ -2,7 +2,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import jwt_decode from 'jwt-decode';
 
-export const url: string = 'http://localhost:3000/api/login';
+export const url: string = 'http://localhost:3000/api';
 export const httpOptions = {
   headers: new HttpHeaders({ 'Content-Type': 'application/json' }),
 };
@@ -26,7 +26,8 @@ export class AuthService {
   }
 
   public register(data: any) {
-    this.isLoggedIn = true;
-    console.log("registration data: ", data)
+    // this.isLoggedIn = true;
+    console.log('Register Completed', data);
+    return this._http.post(`${url}/auth`, data);
   }
 }
