@@ -1,18 +1,39 @@
-<button (click)="login()">Change</button>
-<nav>
-  <span>Logo</span>
+<nav class="nav">
+  <div class="nav-logo nav-flex-item">
+    <img
+      src="../../../../assets/images/ANIMEI.png"
+      alt="logo"
+      [routerLink]="'/auth/login'"
+    />
+  </div>
   <ng-container *ngIf="!isLoggedIn">
-    <li>
-      <a [routerLink]="'/auth/login'">Login</a>
-    </li>
-    <li>
-      <a [routerLink]="'/auth/register'">Register</a>
-    </li>
+    <ul class="nav-list nav-flex-item">
+      <li class="nav-item">
+        <a [routerLink]="'/auth/login'" class="nav-link" (click)="login()"
+          >Login</a
+        >
+      </li>
+      <li class="nav-item nav-register">
+        <a [routerLink]="'/auth/register'" class="nav-link">Register</a>
+      </li>
+    </ul>
   </ng-container>
   <ng-template [ngIf]="isLoggedIn">
-    <li>
-      <a [routerLink]="'/auth/dashboard'">Dashboard</a>
-    </li>
-    <li><button (click)="logout()">Logout</button></li>
+    <ul class="nav-list nav-flex-item">
+      <li class="nav-item nav-item-right">
+        <a class="nav-link">Home</a>
+      </li>
+      <li class="nav-item nav-item-right">
+        <a class="nav-link">Profile</a>
+      </li>
+      <li class="nav-item nav-item-right">
+        <a class="nav-link">Anime List</a>
+      </li>
+    </ul>
+    <div class="nav-flex-item nav-btn-container">
+      <button class="nav-btn">Search</button>
+      <button class="nav-btn">Profile</button>
+      <button class="nav-btn" (click)="logout()">Logout</button>
+    </div>
   </ng-template>
 </nav>
