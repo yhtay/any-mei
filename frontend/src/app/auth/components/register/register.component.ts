@@ -1,6 +1,11 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule } from '@angular/forms';
+import {
+  FormBuilder,
+  FormGroup,
+  FormsModule,
+  ReactiveFormsModule,
+} from '@angular/forms';
 import { AuthService } from '../../services/auth.service';
 
 @Component({
@@ -8,10 +13,9 @@ import { AuthService } from '../../services/auth.service';
   standalone: true,
   imports: [CommonModule, FormsModule, ReactiveFormsModule],
   templateUrl: './register.component.html',
-  styleUrls: ['./register.component.scss']
+  styleUrls: ['./register.component.scss'],
 })
 export class RegisterComponent {
-
   public registrationForm!: FormGroup;
 
   constructor(
@@ -19,13 +23,13 @@ export class RegisterComponent {
     private readonly authService: AuthService
   ) {
     this.registrationForm = this._fb.group({
-      username: "",
-      email: "",
-      password: ""
-    })
+      username: '',
+      email: '',
+      password: '',
+    });
   }
 
   onRegistration() {
-    this.authService.register(this.registrationForm.value)
+    this.authService.register(this.registrationForm.value).subscribe();
   }
 }
