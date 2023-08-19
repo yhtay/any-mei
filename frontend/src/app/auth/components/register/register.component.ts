@@ -9,7 +9,7 @@ import {
   ReactiveFormsModule,
   ValidatorFn,
   Validators,
-  ValidationErrors
+  ValidationErrors,
 } from '@angular/forms';
 import { AuthService } from '../../services/auth.service';
 
@@ -22,38 +22,52 @@ import { AuthService } from '../../services/auth.service';
 })
 export class RegisterComponent {
   public registrationForm!: FormGroup;
-  public hasSubmitted:boolean = false
+  public hasSubmitted: boolean = false;
 
   constructor(
     private readonly _fb: FormBuilder,
     private readonly authService: AuthService
   ) {
-    this.registrationForm = this._fb.group({
-      username: new FormControl(null, [Validators.required]),
-      email: new FormControl(null, [Validators.required]),
-      password: new FormControl(null, [Validators.required]),
-      confirmPassword: new FormControl(null)
-    },
-    {
-      validators: this.matchPassword
-    }
+    this.registrationForm = this._fb.group(
+      {
+        username: ['', [Validators.required]],
+        email: ['', [Validators.required]],
+        password: ['', [Validators.required]],
+        confirmPassword: ['', [Validators.required]],
+      },
+      {
+        validators: this.matchPassword,
+      }
     );
   }
 
-  private matchPassword: ValidatorFn = (control: AbstractControl): ValidationErrors | null => {
-    let password = control.get('password')
-    let confirmPassword = control.get('confirmPassword')
-    if (password && confirmPassword && password.value !== confirmPassword.value) {
-      return {
-        passwordmatcherror: true
-      }
-    }
-    return null
+  get f(): { [key: string]: AbstractControl } {
+    return this.registrationForm.controls;
   }
 
+  private matchPassword: ValidatorFn = (
+    control: AbstractControl
+  ): ValidationErrors | null => {
+    let password = control.get('password');
+    let confirmPassword = control.get('confirmPassword');
+    // if (password && confirmPassword && password.value !== confirmPassword.value) {
+    //   return {
+    //     passwordmatcherror: true
+    //   }
+    // }
+    // return null
+
+    // Since we attain the password & confirmPassword we can just check if the two match
+    return password === confirmPassword ? null : { mismatch: true };
+  };
+
   onRegistration() {
-    delete this.registrationForm.value.confirmPassword
-    this.hasSubmitted = true
-    this.authService.register(this.registrationForm.value).subscribe();
+    delete this.registrationForm.value.confirmPassword;
+    this.hasSubmitted = true;
+
+    // I think this is better since we aren't actually changing the form data but only taking what is needed
+    const { confirmPassword, ...formData } = this.registrationForm.value;
+
+    // this.authService.register(this.registrationForm.value).subscribe(console.log);
   }
 }

@@ -1,21 +1,34 @@
 <p>register works!</p>
 <form [formGroup]="registrationForm" (ngSubmit)="onRegistration()">
-    <div>
-        <label for="username">Username: </label>
-        <input id="username" type="text" formControlName="username">
+  <div>
+    <label for="username">Username: </label>
+    <input id="username" type="text" formControlName="username" />
+    <div *ngIf="f['username'].touched || f['username'].dirty">
+        <span *ngIf="f['username'].hasError('required')">
+            Username Required
+        </span>
     </div>
-    <div>
-        <label for="email">Email: </label>
-        <input id="email" type="email" formControlName="email">
-    </div>
-    <div>
-        <label for="password">Password: </label>
-        <input type="password" formControlName="password">
-    </div>
-        <div>
-        <label for="confirmPassword">Confirm Password: </label>
-        <input type="password" formControlName="confirmPassword">
-    </div>
-    <span *ngIf="hasSubmitted &&registrationForm.errors?.['passwordmatcherror']">Password does NOT match</span>
-    <button>Register</button>
+  </div>
+  <div>
+    <label for="email">Email: </label>
+    <input id="email" type="email" formControlName="email" />
+  </div>
+  <div>
+    <label for="password">Password: </label>
+    <input type="password" formControlName="password" />
+    <!-- <div *ngIf="registrationForm.get('password').hasError('required')">
+      Password is required.
+    </div> -->
+  </div>
+  <div>
+    <label for="confirmPassword">Confirm Password: </label>
+    <input type="password" formControlName="confirmPassword" />
+    <!-- <div *ngIf="registrationForm.get('confirmPassword).hasError('required')">
+      Confirm Password is required.
+    </div> -->
+  </div>
+  <!-- <span *ngIf="hasSubmitted &&registrationForm.errors?.['passwordmatcherror']"
+    >Password does NOT match</span
+  > -->
+  <button [disabled]="!registrationForm.valid">Register</button>
 </form>
