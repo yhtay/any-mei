@@ -1,16 +1,21 @@
 <p>register works!</p>
 <form [formGroup]="registrationForm" (ngSubmit)="onRegistration()">
     <div>
-        <label for="username">Username</label>
+        <label for="username">Username: </label>
         <input id="username" type="text" formControlName="username">
     </div>
     <div>
-        <label for="email">Email</label>
+        <label for="email">Email: </label>
         <input id="email" type="email" formControlName="email">
     </div>
     <div>
-        <label for="password">Password</label>
+        <label for="password">Password: </label>
         <input type="password" formControlName="password">
     </div>
+        <div>
+        <label for="confirmPassword">Confirm Password: </label>
+        <input type="password" formControlName="confirmPassword">
+    </div>
+    <span *ngIf="hasSubmitted &&registrationForm.errors?.['passwordmatcherror']">Password does NOT match</span>
     <button>Register</button>
 </form>
