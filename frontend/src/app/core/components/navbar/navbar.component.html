@@ -6,7 +6,7 @@
       [routerLink]="'/auth/login'"
     />
   </div>
-  <ng-container *ngIf="!isLoggedIn">
+  <ng-container *ngIf="!isLoggedIn()?.getAuth()?.isLoggedIn">
     <ul class="nav-list nav-flex-item">
       <li class="nav-item">
         <a [routerLink]="'/auth/login'" class="nav-link" (click)="login()"
@@ -18,7 +18,7 @@
       </li>
     </ul>
   </ng-container>
-  <ng-template [ngIf]="isLoggedIn">
+  <ng-template [ngIf]="isLoggedIn()?.getAuth()?.isLoggedIn">
     <ul class="nav-list nav-flex-item">
       <li class="nav-item nav-item-right">
         <a class="nav-link">Home</a>

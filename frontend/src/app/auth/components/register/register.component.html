@@ -23,6 +23,9 @@
   <div>
     <label for="confirmPassword">Confirm Password: </label>
     <input type="password" formControlName="confirmPassword" />
+    <div>
+      {{ f['password'].touched}}
+    </div>
     <!-- <div *ngIf="registrationForm.get('confirmPassword).hasError('required')">
       Confirm Password is required.
     </div> -->
@@ -30,5 +33,6 @@
   <!-- <span *ngIf="hasSubmitted &&registrationForm.errors?.['passwordmatcherror']"
     >Password does NOT match</span
   > -->
-  <button [disabled]="!registrationForm.valid">Register</button>
+  <button>Register</button>
+  
 </form>
