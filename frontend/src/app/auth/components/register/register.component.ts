@@ -62,9 +62,13 @@ export class RegisterComponent {
   };
 
   onRegistration() {
-    delete this.registrationForm.value.confirmPassword;
+    // delete this.registrationForm.value.confirmPassword;
     this.hasSubmitted = true;
 
+    /**
+     * Check if the form is completed --> if it is --> check for validation --> API POST Call backend
+     */
+    
     // I think this is better since we aren't actually changing the form data but only taking what is needed
     const { confirmPassword, ...formData } = this.registrationForm.value;
 

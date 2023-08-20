@@ -1,16 +1,33 @@
-<p>login works!</p>
 <div>
   <form [formGroup]="loginForm" (ngSubmit)="onLogin()">
     <h3>Login</h3>
     <div>
-      <label for="email">Email</label>
-      <input type="email" formControlName="email"/>
+      <label for="username">Username</label>
+      <input type="username" formControlName="username" />
     </div>
     <div>
       <label for="password">Password</label>
-      <input type="password" formControlName="password"/>
+      <input type="password" formControlName="password" />
     </div>
     <button>Login</button>
+    <div
+      *ngIf="
+        (f['username'].hasError('required') ||
+          f['password'].hasError('required')) &&
+        isSubmitted
+      "
+    >
+      Please fill the missing credientials
+    </div>
+    <div
+      *ngIf="
+        invalidCredentials &&
+        !f['username'].hasError('required') &&
+        !f['password'].hasError('required')
+      "
+    >
+      {{ loginResponse }}
+    </div>
   </form>
   <button>Forgot password?</button>
 </div>
