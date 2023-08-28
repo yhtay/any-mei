@@ -64,7 +64,7 @@ export class LoginComponent implements OnDestroy {
     this.resetFormAndFlags();
 
     // Update the actual navigation
-    // this._router.navigate(['auth/register']);
+    this._router.navigate(['dashboard']);
   }
 
   /**

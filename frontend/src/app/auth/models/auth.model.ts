@@ -11,6 +11,11 @@ export class MAuth {
     isLoggedIn: false,
   };
 
+  private defaultAuth: MCAuth = {
+    accessToken: null,
+    isLoggedIn: false,
+  };
+
   //   Retrieve the latest auth info
   getAuth() {
     return this.auth;
@@ -19,10 +24,17 @@ export class MAuth {
   //   Set the auth info
   setAuth(auth: MCAuth) {
     this.auth = auth;
+    localStorage.setItem('authInfo', JSON.stringify(this.auth));
   }
 
   //   Update the auth info
   updateAuth(data: any) {
-    this.auth = {...this.auth, ...data}
+    this.auth = { ...this.auth, ...data };
+  }
+
+  // Clear the auth info
+  clearAuth() {
+    this.auth = this.defaultAuth;
+    localStorage.clear();
   }
 }

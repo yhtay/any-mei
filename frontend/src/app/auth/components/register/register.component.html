@@ -4,9 +4,9 @@
     <label for="username">Username: </label>
     <input id="username" type="text" formControlName="username" />
     <div *ngIf="f['username'].touched || f['username'].dirty">
-        <span *ngIf="f['username'].hasError('required')">
-            Username Required
-        </span>
+      <span *ngIf="f['username'].hasError('required')">
+        Username Required
+      </span>
     </div>
   </div>
   <div>
@@ -24,7 +24,8 @@
     <label for="confirmPassword">Confirm Password: </label>
     <input type="password" formControlName="confirmPassword" />
     <div>
-      {{ f['password'].touched}}
+      {{ f["password"].touched }}
+      {{ f["password"].validator }}
     </div>
     <!-- <div *ngIf="registrationForm.get('confirmPassword).hasError('required')">
       Confirm Password is required.
@@ -34,5 +35,4 @@
     >Password does NOT match</span
   > -->
   <button>Register</button>
-  
 </form>
