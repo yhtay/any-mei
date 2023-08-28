@@ -16,7 +16,8 @@ export class NavbarComponent {
   constructor(
     private readonly _router: Router,
     private readonly authService: AuthService
-  ) {}
+  ) {
+  }
 
   // Redirect to login page from Navbar
   login() {

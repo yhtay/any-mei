@@ -6,7 +6,7 @@
       [routerLink]="'/auth/login'"
     />
   </div>
-  <ng-container *ngIf="!isLoggedIn()?.getAuth()?.isLoggedIn">
+  <ng-container *ngIf="!isLoggedIn()?.getLogin()?.isLoggedIn">
     <ul class="nav-list nav-flex-item">
       <li class="nav-item">
         <a [routerLink]="'/auth/login'" class="nav-link" (click)="login()"
@@ -18,16 +18,16 @@
       </li>
     </ul>
   </ng-container>
-  <ng-template [ngIf]="isLoggedIn()?.getAuth()?.isLoggedIn">
+  <ng-template [ngIf]="isLoggedIn()?.getLogin()?.isLoggedIn">
     <ul class="nav-list nav-flex-item">
       <li class="nav-item nav-item-right">
-        <a class="nav-link">Home</a>
+        <a class="nav-link" [routerLink]="'/dashboard'">Home</a>
       </li>
       <li class="nav-item nav-item-right">
-        <a class="nav-link">Profile</a>
+        <a class="nav-link" [routerLink]="'/admin'">Profile</a>
       </li>
       <li class="nav-item nav-item-right">
-        <a class="nav-link">Anime List</a>
+        <a class="nav-link" [routerLink]="'/anime'">Anime List</a>
       </li>
     </ul>
     <div class="nav-flex-item nav-btn-container">
