@@ -30,15 +30,37 @@ export class RegisterComponent {
   ) {
     this.registrationForm = this._fb.group(
       {
-        username: ['', [Validators.required]],
-        email: ['', [Validators.required]],
-        password: ['', [Validators.required]],
-        confirmPassword: ['', [Validators.required]],
+        username: ['', [Validators.required, Validators.minLength(6)]],
+        email: ['', [Validators.required, this.emailValidator]],
+        password: ['', [Validators.required], Validators.minLength(6)],
+        confirmPassword: ['', [Validators.required], Validators.minLength(6)],
       },
       {
         validators: this.matchPassword,
       }
     );
+  }
+
+  emailValidator = (control:AbstractControl): ValidationErrors | null => {
+    const email = control.value
+    const acceptedDomains = ["yahoo.com", "gmail.com", "msn.com"]
+    console.log("email: ", email, email.includes("@"), email.endsWith(".com"))
+    if (email) {
+      // if (email.includes("@") && email.endsWith(".com")) {
+      //   return { "invalidEmail": false }
+      // }
+
+      // const domainValid = acceptedDomains.some(domain => email.endsWith(domain))
+      // if (email.includes("@") && domainValid ) {
+      //   return { "invalidEmail": false }
+      // }
+ 
+      if (email.includes("@") && acceptedDomains.includes(email.split("@")[1]) ) {
+        return { "invalidEmail": false }
+      }
+
+    }
+    return { "invalidEmail": true };
   }
 
   get f(): { [key: string]: AbstractControl } {
@@ -50,6 +72,15 @@ export class RegisterComponent {
   ): ValidationErrors | null => {
     let password = control.get('password');
     let confirmPassword = control.get('confirmPassword');
+
+    if (password && confirmPassword) {
+      if(password.value === confirmPassword.value) {
+        return { mismatch: false}
+      } else {
+        return { mismatch: true}
+      }
+    }
+    return { mismatch: null}
     // if (password && confirmPassword && password.value !== confirmPassword.value) {
     //   return {
     //     passwordmatcherror: true
@@ -57,8 +88,6 @@ export class RegisterComponent {
     // }
     // return null
 
-    // Since we attain the password & confirmPassword we can just check if the two match
-    return password === confirmPassword ? null : { mismatch: true };
   };
 
   onRegistration() {
@@ -68,9 +97,10 @@ export class RegisterComponent {
     /**
      * Check if the form is completed --> if it is --> check for validation --> API POST Call backend
      */
-    
+
     // I think this is better since we aren't actually changing the form data but only taking what is needed
     const { confirmPassword, ...formData } = this.registrationForm.value;
+    console.log("formData: ", formData)
 
     // this.authService.register(this.registrationForm.value).subscribe(console.log);
   }

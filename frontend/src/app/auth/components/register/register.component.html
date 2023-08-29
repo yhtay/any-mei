@@ -12,6 +12,10 @@
   <div>
     <label for="email">Email: </label>
     <input id="email" type="email" formControlName="email" />
+    <div >
+      <span *ngIf="hasSubmitted && f['email'].hasError('invalidEmail')"
+        >Invalid Email</span>
+    </div>
   </div>
   <div>
     <label for="password">Password: </label>
@@ -23,16 +27,16 @@
   <div>
     <label for="confirmPassword">Confirm Password: </label>
     <input type="password" formControlName="confirmPassword" />
-    <div>
+    <!-- <div>
       {{ f["password"].touched }}
-      {{ f["password"].validator }}
-    </div>
+      {{ registrationForm.hasError('mismatch') }}
+    </div> -->
     <!-- <div *ngIf="registrationForm.get('confirmPassword).hasError('required')">
       Confirm Password is required.
     </div> -->
   </div>
-  <!-- <span *ngIf="hasSubmitted &&registrationForm.errors?.['passwordmatcherror']"
+  <span *ngIf="hasSubmitted && registrationForm.hasError('mismatch')"
     >Password does NOT match</span
-  > -->
+  >
   <button>Register</button>
 </form>
