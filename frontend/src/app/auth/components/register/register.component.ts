@@ -33,15 +33,14 @@ export class RegisterComponent {
         username: ['', [Validators.required, Validators.minLength(6)]],
         email: ['', [Validators.required, this.emailValidator]],
         password: ['', [Validators.required], Validators.minLength(6)],
-        confirmPassword: ['', [Validators.required], Validators.minLength(6)],
-      },
-      {
-        validators: this.matchPassword,
+        confirmPassword: ['', [Validators.required], Validators.minLength(6), this.matchPassword],
       }
     );
   }
 
-  emailValidator = (control:AbstractControl): ValidationErrors | null => {
+  emailValidator = (
+    control:AbstractControl
+    ): ValidationErrors | null => {
     const email = control.value
     const acceptedDomains = ["yahoo.com", "gmail.com", "msn.com"]
     console.log("email: ", email, email.includes("@"), email.endsWith(".com"))
@@ -54,7 +53,7 @@ export class RegisterComponent {
       // if (email.includes("@") && domainValid ) {
       //   return { "invalidEmail": false }
       // }
- 
+
       if (email.includes("@") && acceptedDomains.includes(email.split("@")[1]) ) {
         return { "invalidEmail": false }
       }
@@ -67,11 +66,11 @@ export class RegisterComponent {
     return this.registrationForm.controls;
   }
 
-  private matchPassword: ValidatorFn = (
+  private matchPassword = (
     control: AbstractControl
   ): ValidationErrors | null => {
-    let password = control.get('password');
-    let confirmPassword = control.get('confirmPassword');
+    let password = control.value('password');
+    let confirmPassword = control.value('confirmPassword');
 
     if (password && confirmPassword) {
       if(password.value === confirmPassword.value) {
@@ -101,7 +100,6 @@ export class RegisterComponent {
     // I think this is better since we aren't actually changing the form data but only taking what is needed
     const { confirmPassword, ...formData } = this.registrationForm.value;
     console.log("formData: ", formData)
-
     // this.authService.register(this.registrationForm.value).subscribe(console.log);
   }
 }
