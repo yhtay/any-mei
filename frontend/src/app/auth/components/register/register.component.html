@@ -1,21 +1,26 @@
-<p>register works!</p>
 <form [formGroup]="registrationForm" (ngSubmit)="onRegistration()">
   <div>
-    <label for="username">Username: </label>
+    <div class="label-and-error">
+      <label for="username">Username: </label>
+      <div>
+        <span *ngIf="hasSubmitted && f['username'].hasError('required')">
+          Username Required
+        </span>
+      </div>
+    </div>
     <input id="username" type="text" formControlName="username" />
     <div *ngIf="f['username'].touched || f['username'].dirty">
-      <span *ngIf="f['username'].hasError('required')">
-        Username Required
-      </span>
     </div>
   </div>
   <div>
-    <label for="email">Email: </label>
-    <input id="email" type="email" formControlName="email" />
-    <div >
-      <span *ngIf="hasSubmitted && f['email'].hasError('invalidEmail')"
-        >Invalid Email</span>
+    <div class="label-and-error">
+      <label for="email">Email: </label>
+      <div>
+        <span *ngIf="hasSubmitted && f['email'].hasError('invalidEmail')"
+          >Invalid Email</span>
     </div>
+    </div>
+    <input id="email" type="email" formControlName="email" />
   </div>
   <div>
     <label for="password">Password: </label>
@@ -25,7 +30,13 @@
     </div> -->
   </div>
   <div>
-    <label for="confirmPassword">Confirm Password: </label>
+    <div class="label-and-error">
+      <label for="confirmPassword">Confirm Password: </label>
+      <span *ngIf="hasSubmitted && registrationForm.hasError('mismatch')"
+        >Password does NOT match</span
+      >
+
+    </div>
     <input type="password" formControlName="confirmPassword" />
     <!-- <div>
       {{ f["password"].touched }}
@@ -35,8 +46,5 @@
       Confirm Password is required.
     </div> -->
   </div>
-  <span *ngIf="hasSubmitted && registrationForm.hasError('mismatch')"
-    >Password does NOT match</span
-  >
   <button>Register</button>
 </form>
