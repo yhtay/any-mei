@@ -25,7 +25,7 @@
     <input type="password" formControlName="confirmPassword" />
     <div>
       {{ f["password"].touched }}
-      {{ f["password"].validator }}
+      {{ registrationForm.hasError('mismatch')}}
     </div>
     <!-- <div *ngIf="registrationForm.get('confirmPassword).hasError('required')">
       Confirm Password is required.
