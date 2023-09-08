@@ -31,4 +31,6 @@ bootstrapApplication(AppComponent, {
   ],
 });
 
-bootstrapApplication(ExternalComponent);
+bootstrapApplication(ExternalComponent, {
+  providers: [importProvidersFrom(BrowserAnimationsModule)],
+});

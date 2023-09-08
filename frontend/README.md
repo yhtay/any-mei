@@ -25,3 +25,26 @@ Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To u
 ## Further help
 
 To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+
+
+## Component Style UI Documentation
+
+For more information on UI https://primeng.org/ use the official PrimeNG page
+
+## Structuring Model/Services
+
+### Model
+This implies for when creating a Respository, which serves as a link to LocalStorage, SessionStorage, Cache, Cookies
+
+-- Contract Copy -- 
+Define by MC**ContractName** (Primarily Type Infering)
+
+-- Model --
+Define by M**ModelName** (Model Structure)
+
+### Service
+-- Observables / BehaviorSubject Formatting--
+Sample:
+private dataName: type = value
+private bsDataName$ = new BehaviorSubject<type>(dataValue or default value)
+public dataName$ = bsDataName.asObservables()
