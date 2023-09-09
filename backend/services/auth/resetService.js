@@ -1,40 +1,21 @@
-const nodemailer = require("nodemailer");
 const auth = require("../../models/authModel");
+const smptConfig = require("../../smtp(nodemailer)/nodemailerSMTP");
 
-exports.requestReset = async (email) => {
-  const emailData = {
-    subject: "Hello This is verification",
-    text: "Please click the link here and proceed",
-  };
+exports.requestReset = async (userEmail) => {
+  let emailInDB = await auth.find({ email: userEmail })
 
-  // Configure Nodemailer to send the email
-  const transporter = nodemailer.createTransport({
-    // Your email service configuration here
-    service: "Gmail",
-    auth: {
-      user: "testkun54@gmail.com",
-      pass: "qnexsctgbojiuhcb",
-    },
-  });
-
-  const mailOptions = {
-    from: "testkun54@gmail.com",
-    to: email,
-    subject: emailData.subject,
-    text: emailData.message,
-  };
-
-  const info = await transporter.sendMail(mailOptions, (error, info) => {
-    if (error) {
-      console.error(error);
-    } else {
-      console.log("Email sent: " + info.response);
-    }
-  });
-
-  console.log(email, info);
-  console.log("Working");
-  return info;
+  // if (emailInDB) {
+  //   const transporter = smptConfig.transporter();
+  //   const mailOption = smptConfig.mailOptions(
+  //     email,
+  //     "Hello This is verification",
+  //     "Please click the link here and proceed"
+  //   );
+  //   const sendMail = await smptConfig.sendMail(transporter, mailOption);
+  //   return true;
+  // } else {
+  //   return false;
+  // }
 };
 
 exports.confirmReset = async () => {
