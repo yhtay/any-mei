@@ -1,18 +1,9 @@
-import {
-  ChangeDetectorRef,
-  Component,
-  OnDestroy,
-  OnInit,
-  computed,
-  effect,
-  inject,
-} from '@angular/core';
+import { ChangeDetectorRef, Component, computed, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ToastModule } from 'primeng/toast';
 import { MessageService } from 'primeng/api';
 import { ButtonModule } from 'primeng/button';
 import { NotificationService } from './notification.service';
-import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-notification',
@@ -22,12 +13,11 @@ import { Subscription } from 'rxjs';
   styleUrls: ['./notification.component.scss'],
   providers: [MessageService],
 })
-export class NotificationComponent implements OnDestroy, OnInit {
+export class NotificationComponent {
   private _messageService = inject(MessageService);
-  private _notiSub!: Subscription;
   public notiData: any = computed(() => {
-    this.showToast(this.notiService.notiDataSignal()?.getNoti())
-    return this.notiService.notiDataSignal()
+    this.showToast(this.notiService.notiDataSignal()?.getNoti());
+    return this.notiService.notiDataSignal();
   });
 
   constructor(
@@ -35,27 +25,12 @@ export class NotificationComponent implements OnDestroy, OnInit {
     private readonly _cdr: ChangeDetectorRef
   ) {}
 
-  ngOnInit() {
-    // this.notiService.notiData$.subscribe((data) => {
-    //   if (data) {
-    //     this.showToast(data.getNoti());
-    //     console.log(data);
-    //     console.log(this.notiData().data);
-    //   }
-    // });
-
-    setTimeout(() => {
-      // this.notiService.updatePosition('top-center', 'tc');
-      this.notiService.showError('Error');
-      console.log('Ran oninit', this.notiData().data);
-    }, 5000);
+  /**
+   * Process PrimeNG messageService to show a toast
+   * @param {data} data Data of MCNoti
+   */
+  showToast(data: any) {
+    let { position, ...trimData } = data;
+    this._messageService.add(trimData);
   }
-
-  showToast(msg: any) {
-    let { position, ...data } = msg;
-    console.log(data)
-    this._messageService.add(data);
-  }
-
-  ngOnDestroy() {}
 }

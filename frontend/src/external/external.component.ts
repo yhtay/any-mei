@@ -9,4 +9,5 @@ import { NotificationComponent } from './notification/notification.component';
   templateUrl: './external.component.html',
   styleUrls: ['./external.component.scss'],
 })
-export class ExternalComponent {}
+export class ExternalComponent {
+}

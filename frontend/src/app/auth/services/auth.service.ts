@@ -1,10 +1,10 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Injectable, computed, signal } from '@angular/core';
+import { Injectable } from '@angular/core';
 import jwt_decode from 'jwt-decode';
 import { BehaviorSubject, tap } from 'rxjs';
 import { MAuth } from '../models/auth.model';
 import { toSignal } from '@angular/core/rxjs-interop';
-import { MCLogin, MLogin } from '../models/login.model';
+import { MLogin } from '../models/login.model';
 
 export const url: string = 'http://localhost:3000/api';
 export const httpOptions = {
