@@ -3,7 +3,14 @@ const resetService = require("../../services/auth/resetService");
 
 // Controller methods for handling user-related operations
 exports.request = async (req, res) => {
-  return resetService.requestReset;
+  let request = await resetService.requestReset(req.body.email);
+  console.log(request);
+  if (request) {
+    console.log("Sucess");
+    return res.json("Processed");
+  } else {
+    return res.json("Error");
+  }
 };
 
 exports.confirm = async (req, res) => {
