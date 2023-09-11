@@ -12,6 +12,7 @@ import {
   ValidationErrors,
 } from '@angular/forms';
 import { AuthService } from '../../services/auth.service';
+import { emailValidator } from 'src/app/core/email.validations';
 
 @Component({
   selector: 'app-register',
@@ -31,36 +32,13 @@ export class RegisterComponent {
     this.registrationForm = this._fb.group(
       {
         username: ['', [Validators.required, Validators.minLength(6)]],
-        email: ['', [Validators.required, this.emailValidator]],
+        email: ['', [Validators.required, emailValidator]],
         password: ['', [Validators.required], Validators.minLength(6)],
         confirmPassword: ['', [Validators.required], Validators.minLength(6), this.matchPassword],
       }
     );
   }
 
-  emailValidator = (
-    control:AbstractControl
-    ): ValidationErrors | null => {
-    const email = control.value
-    const acceptedDomains = ["yahoo.com", "gmail.com", "msn.com"]
-    console.log("email: ", email, email.includes("@"), email.endsWith(".com"))
-    if (email) {
-      // if (email.includes("@") && email.endsWith(".com")) {
-      //   return { "invalidEmail": false }
-      // }
-
-      // const domainValid = acceptedDomains.some(domain => email.endsWith(domain))
-      // if (email.includes("@") && domainValid ) {
-      //   return { "invalidEmail": false }
-      // }
-
-      if (email.includes("@") && acceptedDomains.includes(email.split("@")[1]) ) {
-        return { "invalidEmail": false }
-      }
-
-    }
-    return { "invalidEmail": true };
-  }
 
   get f(): { [key: string]: AbstractControl } {
     return this.registrationForm.controls;
