@@ -16,6 +16,20 @@ export const AUTH_ROUTES: Routes = [
       ),
   },
   {
+    path: 'reset',
+    loadComponent: () =>
+      import('./components/reset/reset.component').then(
+        (m) => m.ResetComponent
+      )
+  },
+  {
+    path: 'reset-link',
+    loadComponent: () =>
+      import('./components/check-email/check-email.component').then(
+        (m) => m.CheckEmailComponent
+      )
+  },
+  {
     path: '',
     redirectTo: 'login',
     pathMatch: 'full',

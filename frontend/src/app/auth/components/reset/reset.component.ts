@@ -8,7 +8,8 @@ import {
   FormBuilder
 } from '@angular/forms';
 import { emailValidator } from 'src/app/core/email.validations';
-emailValidator
+import { ResetService } from '../../services/reset.service';
+import { Router } from '@angular/router';
 
 
 @Component({
@@ -24,13 +25,15 @@ export class ResetComponent {
 
   constructor (
     private readonly _fb: FormBuilder,
+    private readonly resetService: ResetService,
+    private $router: Router
   ) {
     this.resetForm = this._fb.group({
       email: ['', [emailValidator]]
     })
   }
 
-  resetPassword() {
-    return
+  resetPasswordEmail() {
+    this.$router.navigate(['/auth/reset-link'])
   }
 }
