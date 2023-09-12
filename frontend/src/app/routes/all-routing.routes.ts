@@ -15,13 +15,6 @@ export const ALL_ROUTES: Routes = [
       ),
   },
   {
-    path: 'dashboard',
-    loadComponent: () =>
-      import('../components/dashboard/dashboard.component').then(
-        (m) => m.DashboardComponent
-      ),
-  },
-  {
     path: 'anime',
     loadComponent: () =>
       import('../components/anime/anime.component').then(

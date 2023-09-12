@@ -11,7 +11,7 @@ export type MCUser = {
   role: string;
 
   profileImgUrl: string;
-
+  profileWallPaperUrL: string;
   completedAnimes: string[];
   currentlyWatchingAnimes: string[];
   watchLaterAnimes: string[];
