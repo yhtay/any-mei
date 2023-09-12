@@ -1,0 +1,47 @@
+<div class="form-container">
+  <form [formGroup]="registrationForm" (ngSubmit)="onRegistration()">
+    <div>
+      <div class="label-and-error">
+        <label for="username">Username: </label>
+        <span *ngIf="hasSubmitted && f['username'].hasError('required')">
+          Username Required
+        </span>
+      </div>
+      <input id="username" type="text" formControlName="username" />
+      <div *ngIf="f['username'].touched || f['username'].dirty">
+      </div>
+    </div>
+    <div>
+      <div class="label-and-error">
+        <label for="email">Email: </label>
+        <span *ngIf="hasSubmitted && f['email'].hasError('invalidEmail')"
+          >Invalid Email</span>
+      </div>
+      <input id="email" type="email" formControlName="email" />
+    </div>
+    <div>
+      <label for="password">Password: </label>
+      <input type="password" formControlName="password" />
+      <!-- <div *ngIf="registrationForm.get('password').hasError('required')">
+        Password is required.
+      </div> -->
+    </div>
+    <div>
+      <div class="label-and-error">
+        <label for="confirmPassword">Confirm Password: </label>
+        <span *ngIf="hasSubmitted && f['confirmPassword'].hasError('mismatch')"
+          >Password does NOT match</span
+        >
+      </div>
+      <input type="password" formControlName="confirmPassword" />
+      <!-- <div>
+        {{ f["password"].touched }}
+        {{ registrationForm.hasError('mismatch') }}
+      </div> -->
+      <!-- <div *ngIf="registrationForm.get('confirmPassword).hasError('required')">
+        Confirm Password is required.
+      </div> -->
+    </div>
+    <button>Register</button>
+  </form>
+</div>
