@@ -1,30 +1,36 @@
 import { Routes } from '@angular/router';
+import { UserListComponent } from '../components/user-list/user-list.component';
+import { AdminComponent } from '../admin.component';
+import { LogListComponent } from '../components/log-list/log-list.component';
+import { AnimeListComponent } from '../components/anime-list/anime-list.component';
 
 export const ADMIN_ROUTES: Routes = [
   {
-    path: 'dashboard',
-    loadComponent: () =>
-      import('../components/dashboard/dashboard.component').then(
-        (m) => m.DashboardComponent
-      ),
-  },
-  {
-    path: 'user-detail/:id',
-    loadComponent: () =>
-      import('../components/user-detail/user-detail.component').then(
-        (m) => m.UserDetailComponent
-      ),
-  },
-  {
-    path: 'anime-detail/:id',
-    loadComponent: () =>
-      import('../components/anime-detail/anime-detail.component').then(
-        (m) => m.AnimeDetailComponent
-      ),
+    path: '',
+    component: AdminComponent,
+    children: [
+      {
+        path: 'userlist',
+        component: UserListComponent,
+      },
+      {
+        path: 'loglist',
+        component: LogListComponent,
+      },
+      {
+        path: 'animelist',
+        component: AnimeListComponent,
+      },
+      {
+        path: '',
+        pathMatch: 'full',
+        redirectTo: 'userlist',
+      },
+    ],
   },
   {
     path: '',
     pathMatch: 'full',
-    redirectTo: 'dashboard',
+    redirectTo: '',
   },
 ];

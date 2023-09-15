@@ -1,17 +1,13 @@
-<!-- <p>admin works!</p>
-<router-outlet></router-outlet> -->
-
-<div class="dash">
-    <h1>Dashbaord</h1>
-    <div class="container">
-        <div class="container-item">
-          <app-user-list></app-user-list>
-        </div>
-        <div class="container-item container-right">
-          <app-anime-list></app-anime-list>
-        </div>
-        <div class="container-item container-left">
-          <app-log-list></app-log-list>
-        </div>
-      </div>
+<div class="admin-container">
+  <h1 class="admin-title">Dashboard</h1>
+  <div class="admin-tabMenu">
+    <p-tabMenu [model]="tabRoutes" [scrollable]="true">
+      <ng-template pTemplate="tab" let-tab let-i="index">
+        <a [routerLink]="tab.route">
+          {{ tab.label | uppercase }}</a
+        >
+      </ng-template>
+    </p-tabMenu>
+  </div>
+  <router-outlet></router-outlet>
 </div>
