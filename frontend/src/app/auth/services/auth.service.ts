@@ -57,6 +57,11 @@ export class AuthService {
     this.mLogin.clearLogin();
   }
 
+  /**
+   * POST request to the backend to create new user
+   * @param registrationData Data for new register { username: "", email: "", password: ""}
+   * @returns
+   */
   public register(registrationData: any) {
     return this._http.post(`${url}/auth`, registrationData);
   }

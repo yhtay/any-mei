@@ -22,9 +22,6 @@
     <div>
       <label for="password">Password: </label>
       <input type="password" formControlName="password" />
-      <!-- <div *ngIf="registrationForm.get('password').hasError('required')">
-        Password is required.
-      </div> -->
     </div>
     <div>
       <div class="label-and-error">
@@ -34,13 +31,6 @@
         >
       </div>
       <input type="password" formControlName="confirmPassword" />
-      <!-- <div>
-        {{ f["password"].touched }}
-        {{ registrationForm.hasError('mismatch') }}
-      </div> -->
-      <!-- <div *ngIf="registrationForm.get('confirmPassword).hasError('required')">
-        Confirm Password is required.
-      </div> -->
     </div>
     <button>Register</button>
   </form>
