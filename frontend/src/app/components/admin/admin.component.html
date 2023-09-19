@@ -1,13 +1,19 @@
+<div class="img-container">
+  <div
+    class="admin-background"
+    [ngStyle]="{ 'background-image': 'url(../../../assets/images/stairs.jpg)' }"
+  ></div>
+</div>
 <div class="admin-container">
   <h1 class="admin-title">Dashboard</h1>
   <div class="admin-tabMenu">
     <p-tabMenu [model]="tabRoutes" [scrollable]="true">
       <ng-template pTemplate="tab" let-tab let-i="index">
-        <a [routerLink]="tab.route">
+        <a [routerLink]="tab.route" (click)="scrollToRouterOutlet()">
           {{ tab.label | uppercase }}</a
         >
       </ng-template>
     </p-tabMenu>
   </div>
-  <router-outlet></router-outlet>
+  <router-outlet #routerOutlet></router-outlet>
 </div>

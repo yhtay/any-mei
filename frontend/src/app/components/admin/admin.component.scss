@@ -12,3 +12,19 @@
     margin-block: 2rem;
   }
 }
+
+.admin-background {
+  height: 70vh;
+  width: 100%;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  transition: all ease-in-out .05s;
+
+  // &:hover {
+  //   transform: scale(1.2);
+  // }
+}
+.img-container {
+  overflow: hidden;
+}

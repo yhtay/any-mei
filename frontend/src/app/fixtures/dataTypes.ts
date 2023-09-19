@@ -21,9 +21,11 @@ export type MCUser = {
 };
 
 export type MCLogs = {
+  accessId: string;
   accessedBy: string;
   //   Format: 2023-08-29 14:10:20
   timestamp: string;
+
   // Create, Update, Fix, Debug -- etc
   task: string;
   summary: string;

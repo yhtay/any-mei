@@ -1,31 +1,53 @@
-<div class="header">
-    <h2>User List</h2>
-    <button>Create</button>
-</div>
 <ng-container *ngIf="userList && userList.length > 0; else noUserList">
-    <p-table [value]="userList" [tableStyle]="{ 'min-width': '50rem' }">
-        <ng-template pTemplate="header">
-            <tr>
-                <th>User ID</th>
-                <th>Name</th>
-                <th>Email</th>
-                <th>Registration Date</th>
-                <th></th>
-                <th></th>
-            </tr>
-        </ng-template>
-        <ng-template pTemplate="body" let-user>
-            <tr>
-                <td>{{ user.id }}</td>
-                <td>{{ user.username }}</td>
-                <td>{{ user.email }}</td>
-                <td>{{ user.registrationDate }}</td>
-                <td><button>Update</button></td>
-                <td><button>Delete</button></td>
-            </tr>
-        </ng-template>
-    </p-table>
+  <p-table
+    [value]="userList"
+    [tableStyle]="{ 'min-width': '50rem' }"
+    #userTable
+    [globalFilterFields]="['username', 'email']"
+  >
+    <ng-template pTemplate="caption">
+      <div class="flex justify-bwt">
+        <span class="p-input-icon-left ml-auto">
+          <i class="pi pi-search"></i>
+          <input
+            pInputText
+            type="text"
+            (input)="
+              userTable.filterGlobal(
+                onFilterInputChange($event.target),
+                'contains'
+              )
+            "
+            placeholder="Search keyword"
+          />
+        </span>
+        <p-button (click)="onCreate()" label="Create"></p-button>
+      </div>
+    </ng-template>
+    <ng-template pTemplate="header">
+      <tr>
+        <th>User ID</th>
+        <th>Name</th>
+        <th>Email</th>
+        <th>Registration Date</th>
+        <th></th>
+        <th></th>
+      </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-user>
+      <tr>
+        <td>{{ user.id }}</td>
+        <td>{{ user.username }}</td>
+        <td>{{ user.email }}</td>
+        <td>{{ user.registrationDate }}</td>
+        <td>
+          <p-button label="Update" (click)="onUpdate(user.id)"></p-button>
+        </td>
+        <td>
+          <p-button label="Delete" (click)="onDelete(user.id)"></p-button>
+        </td>
+      </tr>
+    </ng-template>
+  </p-table>
 </ng-container>
-<ng-template #noUserList>
-    No Data
-</ng-template>
+<ng-template #noUserList> No Data </ng-template>

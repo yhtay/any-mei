@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ElementRef, ViewChild } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterOutlet } from '@angular/router';
 import { AnimeListComponent } from './components/anime-list/anime-list.component';
@@ -26,4 +26,13 @@ export class AdminComponent {
     { label: 'Animes', route: '/admin/animelist' },
     { label: 'Logs', route: '/admin/loglist' },
   ];
+  backgroundImg = '../../../assets/images/stairs.jpeg';
+  @ViewChild('routerOutlet') routerOutlet!: ElementRef;
+
+  scrollToRouterOutlet() {
+    if (this.routerOutlet.nativeElement) {
+      console.log('Scroll');
+      this.routerOutlet.nativeElement.scrollIntoView({ behavior: 'smooth' });
+    }
+  }
 }

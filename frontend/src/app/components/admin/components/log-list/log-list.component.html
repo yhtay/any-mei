@@ -1,1 +1,43 @@
-<p>log-list works!</p>
+<ng-container *ngIf="logList && logList.length > 0; else noLogList">
+  <p-table
+    [value]="logList"
+    [tableStyle]="{ 'min-width': '50rem' }"
+    [globalFilterFields]="['accessId', 'accessedBy', 'timestamp', 'task']"
+    #logTable
+  >
+    <ng-template pTemplate="caption">
+      <div class="flex">
+        <span class="p-input-icon-left ml-auto">
+          <i class="pi pi-search"></i>
+          <input
+            pInputText
+            type="text"
+            (input)="
+              logTable.filterGlobal(onFilterInputChange($event.target), 'contains')
+            "
+            placeholder="Search keyword"
+          />
+        </span>
+      </div>
+    </ng-template>
+    <ng-template pTemplate="header">
+      <tr>
+        <th>User ID</th>
+        <th>Accessed By</th>
+        <th>TimeStamp</th>
+        <th>Task</th>
+        <th>Summary</th>
+      </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-log>
+      <tr>
+        <td>{{ log.accessId }}</td>
+        <td>{{ log.accessedBy }}</td>
+        <td>{{ log.timestamp }}</td>
+        <td>{{ log.task }}</td>
+        <td>{{ log.summary }}</td>
+      </tr>
+    </ng-template>
+  </p-table>
+</ng-container>
+<ng-template #noLogList> No Data </ng-template>
