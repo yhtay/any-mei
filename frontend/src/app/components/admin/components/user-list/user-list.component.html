@@ -30,6 +30,7 @@
         <th>Name</th>
         <th>Email</th>
         <th>Registration Date</th>
+        <th>Status</th>
         <th></th>
         <th></th>
       </tr>
@@ -40,6 +41,7 @@
         <td>{{ user.username }}</td>
         <td>{{ user.email }}</td>
         <td>{{ user.registrationDate }}</td>
+        <td>--Empty-- (Online or Offline)</td>
         <td>
           <p-button label="Update" (click)="onUpdate(user.id)"></p-button>
         </td>

@@ -1,1 +1,63 @@
-<p>anime-list works!</p>
+<ng-container *ngIf="animeList && animeList.length > 0; else noAnimeList">
+  <p-table
+    [value]="animeList"
+    [tableStyle]="{ 'min-width': '50rem' }"
+    #userTable
+    [globalFilterFields]="['id', 'title.romaji', 'title.english']"
+  >
+    <ng-template pTemplate="caption">
+      <div class="flex justify-bwt">
+        <span class="p-input-icon-left ml-auto">
+          <i class="pi pi-search"></i>
+          <input
+            pInputText
+            type="text"
+            (input)="
+              userTable.filterGlobal(
+                onFilterInputChange($event.target),
+                'contains'
+              )
+            "
+            placeholder="Search keyword"
+          />
+        </span>
+        <p-button (click)="onCreate()" label="Create"></p-button>
+      </div>
+    </ng-template>
+    <ng-template pTemplate="header">
+      <tr>
+        <th>Anime ID</th>
+        <th>Title</th>
+        <th>Add Date</th>
+        <th>Last Updated</th>
+
+        <!-- Shows Number of Reports -->
+        <th>Current Reports</th>
+
+        <!-- Completed Updated -->
+        <th>Status</th>
+        <th>Created By</th>
+        <th></th>
+        <th></th>
+      </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-anime>
+      <tr>
+        <td>{{ anime.id }}</td>
+        <td>{{ anime.title.romaji }}</td>
+        <td>--Empty--</td>
+        <td>--Empty--</td>
+        <td>--Empty--</td>
+        <td>--Empty--</td>
+        <td>--Empty--</td>
+        <td>
+          <p-button label="Update" (click)="onUpdate(anime.id)"></p-button>
+        </td>
+        <td>
+          <p-button label="Delete" (click)="onDelete(anime.id)"></p-button>
+        </td>
+      </tr>
+    </ng-template>
+  </p-table>
+</ng-container>
+<ng-template #noAnimeList> No Data </ng-template>

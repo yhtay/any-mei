@@ -1,15 +1,31 @@
-<div class="img-container">
+<!-- <div class="img-container">
   <div
     class="admin-background"
     [ngStyle]="{ 'background-image': 'url(../../../assets/images/stairs.jpg)' }"
   ></div>
-</div>
+</div> -->
 <div class="admin-container">
   <h1 class="admin-title">Dashboard</h1>
+  <div>
+    This is admin data
+
+    <div>
+      Last Login
+    </div>
+    <div>
+      Assignments
+    </div>
+    <div>
+      Activity Charts -- using the metrics to check the login like github
+    </div>
+    <div>
+      2 Charts on Total Animes / Total Users
+    </div>
+  </div>
   <div class="admin-tabMenu">
     <p-tabMenu [model]="tabRoutes" [scrollable]="true">
       <ng-template pTemplate="tab" let-tab let-i="index">
-        <a [routerLink]="tab.route" (click)="scrollToRouterOutlet()">
+        <a [routerLink]="tab.route">
           {{ tab.label | uppercase }}</a
         >
       </ng-template>
