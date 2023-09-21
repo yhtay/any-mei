@@ -2,6 +2,10 @@
 const auth = require("../../models/authModel");
 const bcrypt = require("bcrypt");
 
+// nodeMailer
+const { transporter, mailOptions, sendMail } = require('../../smtp(nodemailer)/nodemailerSMTP');
+
+
 // CRUD Methods
 exports.getAllAuths = async () => {
   return auth.find();
@@ -14,6 +18,10 @@ exports.getAuthById = async (id) => {
 exports.createAuth = async (authData) => {
   const hashPassword = await bcrypt.hash(authData.password, 10);
   const newUser = { ...authData, password: hashPassword };
+  const sender = transporter()
+  const options = mailOptions(newUser.email, newUser.subject, newUser.text)
+  sendMail(sender, options)
+
   return await auth.create(newUser);
 };
 
