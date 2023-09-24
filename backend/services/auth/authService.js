@@ -23,9 +23,7 @@ exports.createAuth = async (authData) => {
   const defaultMessage = newUser.username ?
     `Thank you for registering ${newUser.username} and welcome!` :
     `Thank you for registering at Any-mei!`;
-  console.log("newUser: ", newUser)
   const options = mailOptions(newUser.email, defaultSubject, defaultMessage)
-  console.log("options: ", options)
   sendMail(sender, options)
 
   return await auth.create(newUser);
