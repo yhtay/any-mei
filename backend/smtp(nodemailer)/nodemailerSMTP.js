@@ -7,8 +7,11 @@ const nodemailer = require("nodemailer");
 exports.transporter = () => {
   return nodemailer.createTransport({
     // Your email service configuration here
-    service: "Gmail",
-    port: 465,
+    /*
+     * "gmail" needs to be lowercase
+     */
+    service: "gmail",
+    // port: 465, // required if not secured service
     secure: true,
     auth: {
       user: process.env.SMTP_USER,
