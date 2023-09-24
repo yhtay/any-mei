@@ -68,6 +68,7 @@ export class RegisterComponent implements OnDestroy {
     this.hasSubmitted = true;
     const { confirmPassword, ...formData } = this.registrationForm.value;
     this.registerSubscrition = this.authService.register(formData).subscribe();
+    console.log("formData: ", formData)
     this.authService.register(formData)
   }
 

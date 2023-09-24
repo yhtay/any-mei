@@ -8,6 +8,7 @@ exports.transporter = () => {
   return nodemailer.createTransport({
     // Your email service configuration here
     service: "Gmail",
+    port: 465,
     secure: true,
     auth: {
       user: process.env.SMTP_USER,

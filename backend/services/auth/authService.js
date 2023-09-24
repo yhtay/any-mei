@@ -19,7 +19,13 @@ exports.createAuth = async (authData) => {
   const hashPassword = await bcrypt.hash(authData.password, 10);
   const newUser = { ...authData, password: hashPassword };
   const sender = transporter()
-  const options = mailOptions(newUser.email, newUser.subject, newUser.text)
+  const defaultSubject = "Thank you for registering & Welcome to Any-mei!"
+  const defaultMessage = newUser.username ?
+    `Thank you for registering ${newUser.username} and welcome!` :
+    `Thank you for registering at Any-mei!`;
+  console.log("newUser: ", newUser)
+  const options = mailOptions(newUser.email, defaultSubject, defaultMessage)
+  console.log("options: ", options)
   sendMail(sender, options)
 
   return await auth.create(newUser);
